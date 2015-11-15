@@ -39,7 +39,6 @@ public:
     void onArmUnsync2(myo::Myo* myo, uint64_t timestamp) { }
     void onUnlock2(myo::Myo* myo, uint64_t timestamp) { }
     void onLock2(myo::Myo* myo, uint64_t timestamp) { }
-
     void onConnect2(myo::Myo *myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion) { }
     void onDisconnect2(myo::Myo *myo, uint64_t timestamp) { }
     void onGyroscopeData2(myo::Myo *myo, uint64_t timestamp, const myo::Vector3< float > &gyro) { }
@@ -47,6 +46,28 @@ public:
     void onBatteryLevelReceived2(myo::Myo *myo, uint64_t timestamp, uint8_t level) { }
     void onEmgData2(myo::Myo *myo, uint64_t timestamp, const int8_t *emg) { }
     void onWarmupCompleted2(myo::Myo *myo, uint64_t timestamp, myo::WarmupResult warmupResult) { }
+
+    void onConnect(myo::Myo *myo, uint64_t timestamp, myo::FirmwareVersion firmwareVersion) {
+        onConnect2(myo, timestamp, firmwareVersion);
+    }
+    void onDisonnect(myo::Myo *myo, uint64_t timestamp) {
+        onDisconnect2(myo, timestamp);
+    }
+    void onGyroscopeData(myo::Myo *myo, uint64_t timestamp, const myo::Vector3< float > &gyro) {
+        onGyroscopeData2(myo,timestamp, gyro);
+    }
+    void onRssi(myo::Myo *myo, uint64_t timestamp, int8_t rssi) {
+        onRssi2(myo, timestamp, rssi);
+    }
+    void onBatteryLevelReceived(myo::Myo *myo, uint64_t timestamp, uint8_t level) {
+        onBatteryLevelReceived2(myo, timestamp, level);
+    }
+    void onEmgData(myo::Myo *myo, uint64_t timestamp, const int8_t *emg) {
+        onEmgData2(myo, timestamp, emg);
+    }
+    void onWarmupCompleted(myo::Myo *myo, uint64_t timestamp, myo::WarmupResult warmupResult) {
+        onWarmupCompleted2(myo, timestamp, warmupResult);
+    }
 
     /* Called by recData when a gesture is detected. The lower the value of "confidence", the more likely the gesture was activated. */
     void onGesture(double confidence, string gesturename) {
@@ -365,7 +386,8 @@ private:
                 score += weight[k] * v1*v2;
 
                 n1 += weight[k] * v1*v1;
-                n2 += weight[k] * v2*v2;            }
+                n2 += weight[k] * v2*v2;
+            }
 
         }
         score /= n1; score /= n2; // score *= 100;
