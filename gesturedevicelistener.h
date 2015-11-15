@@ -74,9 +74,6 @@ public:
     // This pose data is set by onOrientation(). It can only take on the values allowed by the standard Myo connect API.
     myo::Pose currentPose;
 
-    // For debugging purposes:
-    ofstream fout;
-
     double gx, gy, gz; int totsync = 100;
     int sync;
 
@@ -86,7 +83,7 @@ public:
     vector<string> gesturenames;
 
     // Our constructor.
-    GestureDeviceListener(string datalabelsfile, string datamodelfile) : fout("gesturedebug.out"), onArm(false), isUnlocked(false), roll_w(0), pitch_w(0), yaw_w(0), currentPose()
+    GestureDeviceListener(string datalabelsfile, string datamodelfile) : onArm(false), isUnlocked(false), roll_w(0), pitch_w(0), yaw_w(0), currentPose()
     {
         data = vector<vector<double> >(0, vector<double>(0, 0));
         roll = 0; pitch = 0; yaw = 0;
@@ -166,12 +163,12 @@ public:
                 }
                 window.push_back(currv);
             }
-//Perform a prediction using the classifier
+		// Perform a prediction using the classifier
             if( !dtw.predict(window) ){
                 cerr << "Failed to perform prediction!" << endl;
                 exit(EXIT_FAILURE);
             }
-    //        cerr << "MADE THE PREDICTION!" << endl;
+
             //Get the predicted class label
             UINT predictedClassLabel = dtw.getPredictedClassLabel();
             double maximumLikelihood = dtw.getMaximumLikelihood();
@@ -181,22 +178,6 @@ public:
             if(predictedClassLabel)
                 onGesture(maximumLikelihood, gesturenames[predictedClassLabel]);// "\tMaximumLikelihood: " << maximumLikelihood << endl;
         }
-
-
-      /*  for(int i = 0; i < 6; i++) {
-        //    fout << data[data.size()-1][i] << " ";
-        } */
-      //  cout << ax << " " << ay << " " << az << endl;
-     /*   for(size_t i = 0; i < gesturekernels.size(); i++) {
-            if(data.size() >= gesturekernels.size()) {
-                double res = convolve(data, gesturekernels[i]);
-                cout << res << endl;
-                if(abs(res) >= 0.6) {
-                    onGesture(res, gesturenames[i]);
-                }
-            }
-        }
-        fout << std::flush; */
 
     }
 
