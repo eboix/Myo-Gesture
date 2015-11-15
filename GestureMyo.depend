@@ -1060,3 +1060,42 @@
 	<GRT.h>
 	<myo/myo.hpp>
 
+1447569351 source:c:\users\enric\documents\code competitions\hackprincetonf2015\myotest\gesturemyo\myo-gesture\gesturemyo.cpp
+	<cmath>
+	<conio.h>
+	<math.h>
+	<iostream>
+	<iomanip>
+	<stdexcept>
+	<string>
+	<algorithm>
+	<fstream>
+	<windows.h>
+	<sstream>
+	<myo/myo.hpp>
+	"gesturedevicelistener.h"
+
+1447570789 c:\users\enric\documents\code competitions\hackprincetonf2015\myotest\gesturemyo\myo-gesture\gesturedevicelistener.h
+	<cmath>
+	<conio.h>
+	<math.h>
+	<iostream>
+	<iomanip>
+	<stdexcept>
+	<string>
+	<algorithm>
+	<fstream>
+	<windows.h>
+	<sstream>
+	<GRT.h>
+	<myo/myo.hpp>
+
+1447516857 source:c:\users\enric\documents\code competitions\hackprincetonf2015\myotest\gesturemyo\myo-gesture\hello-myo.cpp
+	<cmath>
+	<iostream>
+	<iomanip>
+	<stdexcept>
+	<string>
+	<algorithm>
+	<myo/myo.hpp>
+
