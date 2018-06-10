@@ -1,3 +1,6 @@
+# This is a quick hack
+You do not want to use this repository. You will not get good results.
+
 # Myo-Gesture
 HackPrinceton2015F -- Extends the Myo API to allow for custom gesture detection.
 
